@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parking Lot</title>
+    <link href="{% static 'img/TensorIoT_Logo.png' %}" rel="icon">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex align-items-center justify-content-center">
+        <a class="navbar-brand" href="#"><img src="{% static 'img/TensorIoT_Logo.png' %}" alt="" srcset="" id="logo-img"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="container">
+        <h1 class="mt-4 text-info d-flex align-items-center justify-content-center">PARKING LOT CHALLENGE</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Add a Car</h2>
+                        <form method="post" action="{% url 'add_car' %}">
+                            <p>Number of Slots: <span id="num_spots_display">{{ num_spots }}</span></p>
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="license_plate">License Plate:</label>
+                                <input type="text" name="license_plate" id="license_plate" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Add Car</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Parked Cars</h2>
+                        <ul class="list-group">
+                            {% for car in cars %}
+                                <li class="list-group-item">
+                                    {% if car.num_spots %}
+                                        Car with license plate {{ car.license_plate }} (Status: Parked in Spot {{ car.num_spots }})
+                                    {% else %}
+                                        Car with license plate {{ car.license_plate }} (Status: Hold-On)
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="mt-4 d-flex align-items-center justify-content-center">Refresh the page to see the updates.</p>
+    </div>
+    <footer class="bg-dark text-light py-2">
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-md-6">
+                    <p class="text-info">TensorIOT - Parking_Lot Challenge &copy; 2023  Dhivya V N : All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
