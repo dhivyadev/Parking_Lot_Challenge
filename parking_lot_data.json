@@ -1,4 +1,4 @@
-[{"license_plate": "abc1234", "num_spots": 71, "square_footage": 2000, "spot_size_width": 19, "spot_size_length": 8},
-  {"license_plate": "zxc1230", "num_spots": 33, "square_footage": 2000, "spot_size_width": 19, "spot_size_length": 8},
-  {"license_plate": "vis298", "num_spots": 2, "square_footage": 2000, "spot_size_width": 19, "spot_size_length": 8},
-  {"license_plate": "dfb6578", "num_spots": 69, "square_footage": 2000, "spot_size_width": 19, "spot_size_length": 8}]
+[{"license_plate": "dfb6578", "num_spots": null, "square_footage": 2000, "spot_size_width": 12, "spot_size_length": 8},
+  {"license_plate": "zxc1230", "num_spots": 26, "square_footage": 2000, "spot_size_width": 12, "spot_size_length": 8},
+  {"license_plate": "vis298", "num_spots": 32, "square_footage": 2000, "spot_size_width": 12, "spot_size_length": 8},
+  {"license_plate": "cvb9876", "num_spots": 97, "square_footage": 2000, "spot_size_width": 12, "spot_size_length": 8}]

@@ -4,6 +4,8 @@ from botocore.exceptions import NoCredentialsError
 from .models import Car, ParkingLot
 import random
 import json
+from django.http import JsonResponse
+
 
 def home(request):
     num_spots = 100  # Initialize num_spots as 100 by default
@@ -98,3 +100,38 @@ def upload_car_data(request):
         message = "Failed to upload car data to S3. AWS credentials are missing or incorrect."
 
     return render(request, 'upload_success.html', {'message': message})
+
+
+def free_spot(request):
+    if request.method == 'POST':
+        spot_number = request.POST.get('spot_number')
+        if spot_number:
+            try:
+                # Find the car with the specified spot number and clear the spot
+                car = Car.objects.filter(num_spots=spot_number).first()
+                if car:
+                    car.num_spots = None
+                    car.save()
+
+                # Read the JSON data from the file
+                with open('parking_lot_data.json', 'r') as file:
+                    data = json.load(file)
+
+                # Check if the spot exists in the JSON data before removing it
+                if spot_number in data:
+                    del data[spot_number]
+
+                # Save the updated JSON data back to the file
+                with open('parking_lot_data.json', 'w') as file:
+                    json.dump(data, file)
+
+                success_message = "Spot successfully cleared."
+                return render(request, 'freesuccess.html', {'success_message': success_message})
+
+            except Exception as e:
+                # Add error handling to log or display the error message
+                print(f"Error: {e}")
+                error_message = "An error occurred while clearing the spot."
+                return JsonResponse({'status': 'error', 'message': error_message})
+
+    return redirect('home')

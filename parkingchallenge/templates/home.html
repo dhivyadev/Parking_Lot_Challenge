@@ -38,22 +38,26 @@
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title">Parked Cars</h2>
+                        <!-- Modify your allocated spots listing -->
+                        <!-- Modify your allocated spots listing -->
                         <ul class="list-group">
                             {% for car in cars %}
-                                <li class="list-group-item">
-                                    {% if car.num_spots %}
+                                {% if car.num_spots %}
+                                    <li class="list-group-item">
                                         Car with license plate {{ car.license_plate }} (Status: Parked in Spot {{ car.num_spots }})
-                                    {% else %}
-                                        Car with license plate {{ car.license_plate }} (Status: Hold-On)
-                                    {% endif %}
-                                </li>
+                                        <form method="post" action="{% url 'free_spot' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="spot_number" value="{{ car.num_spots }}">
+                                            <button type="submit" class="btn btn-danger">Free Slot</button>
+                                        </form>
+                                    </li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <p class="mt-4 d-flex align-items-center justify-content-center">Refresh the page to see the updates.</p>
     </div>
     <footer class="bg-dark text-light py-2">
         <div class="container">
@@ -65,4 +69,6 @@
         </div>
     </footer>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 </html>

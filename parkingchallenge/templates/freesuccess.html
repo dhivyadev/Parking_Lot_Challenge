@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Upload Success</title>
+    <title>Parking Lot</title>
     <link href="{% static 'img/TensorIoT_Logo.png' %}" rel="icon">
+
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-   <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex align-items-center justify-content-center">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex align-items-center justify-content-center">
         <a class="navbar-brand" href="#"><img src="{% static 'img/TensorIoT_Logo.png' %}" alt="" srcset="" id="logo-img"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -19,8 +20,8 @@
             <div class="col-md-12">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h1>Upload Success</h1>
-                        <p>{{ message }}</p>
+                        <h5 class="card-title">Success</h5>
+                        <p class="card-text">{{ success_message }}</p>
                         <a href="{% url 'add_car' %}" class="btn btn-primary">Return to Home</a>
                     </div>
                 </div>

@@ -29,3 +29,14 @@
 .list-group-item {
     font-size: 1rem;
 }
+.success-card {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
